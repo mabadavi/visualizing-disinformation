@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://d3js.org/d3.v6.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>visualizing disinformation</title>
+</head>
+<body>
+  <div class="content">
+  <div class="title">
+    <h1>The Forces that Drive Disinformation: Social Media, Political Polarization, and Media Illiteracy</h1>
+    <h3 id="sub">by Mary Ann Badavi</h3>
+  </div>
+  <p>Plandemic, QAnon, Dominion voting machines, Antifa riots. 2020 was the year that disinformation and conspiracy theories rose to the forefront of political discourse. During a year of enormous tragedy and hardship in the form of a global pandemic, violence against people of color, and record unemployment, it seemed only natural that America would experience an information fallout as well. But how does disinformation spread, and what are the driving forces behind it?</p>
+  <p>The answer, of course, is complicated. But it boils down to a one main point: the intentional spread of disinformation online preys on people's inability to parse fiction from reality.</p>
+  <p>We analyzed 1000 tweets from five keywords related to popular disinformation topics. We found that many of these tweets used subjective language, as opposed to language typically associated with facts, news, and vertification.</p>
+  <div class="viz1">
+  <h2>Keywords that often contain disinformation on social media show mostly subjective content.</h2>
+  <div class="grid-container">
+    <div class="grid-item">lamestream media<br />
+      <small><strong>23.5%</strong> of tweets were rated as objective</small></div>
+    <div class="grid-item" id="lamestream-media"></div>
+    <div class="grid-item">stop the steal<br />
+      <small><strong>40.1%</strong> of tweets were rated as objective</small></div>
+    <div class="grid-item" id="stop-the-steal"></div>   
+    <div class="grid-item">Tangibles2020<br />
+      <small><strong>29.8%</strong> of tweets were rated as objective</small></div>
+    <div class="grid-item" id="tangibles2020"></div>   
+    <div class="grid-item">unsolicited ballot<br />
+      <small><strong>20.5%</strong> of tweets were rated as objective</small></div>
+    <div class="grid-item" id="unsolicited-ballot"></div>
+    <div class="grid-item">voter fraud<br />
+      <small><strong>25.2%</strong> of tweets were rated as objective</small></div>
+    <div class="grid-item" id="voter-fraud"></div>
+    <div class="grid-item"></div>
+    <div class="grid-item">
+      <svg width="800" height="50">
+        <text x="50" y="20" font-size="14px">More Objective</text>
+        <text x="476" y="20" font-size="14px">More Subjective</text>
+        <line x1="150" y1="16" x2="470" y2="16" style="stroke:#aaa;stroke-width:1;stroke-dasharray:3,3" />
+        </svg>
+    </div>
+  </div>
+  <p style="text-align: right;"><small>Source: Twitter, tweets scraped December 7</small></p>
+</div>
+<p>How much is social media to blame for the spread of disinformation? As it turns out, quite a bit. In the leadup to the 2020 U.S. presidential election, companies like <a href="https://www.newsday.com/news/nation/twitter-flag-tweets-election-disinformation-2020-1.50068057">Twitter</a>, <a href="https://www.dw.com/en/facebook-steps-up-fight-against-us-election-misinformation/a-54558160">Facebook</a>, and <a href="https://www.theverge.com/2020/2/3/21120707/youtube-disinformation-election-2020-manipulated-video-channel-policy">Youtube</a> worked to fight disinformation by providing alerts on posts that were potentially fraudulent. This resulted in conservatives <a href="https://www.bbc.com/news/technology-54698186">claiming</a> they were being censored by social media.</p>
+<p>But in reality, posts from conservative sources like FOX News, Donald Trump, and Dan Bongino had some of the highest shares on Facebook—even posts containing disinformation about election fraud.</p>
+<div class="viz2">
+  <h2>The most shared posts on social media are often political&#8212;and deeply polarized.</h2>
+  <div id="facebook-top10"></div>
+  <p style="text-align: right;"><small>Source: <a href="https://twitter.com/FacebooksTop10">Facebook Top 10</a>, November 23-December 6.</small></p>
+</div>
+<p>While disinformation's virulent spread on social media is alarming on its own, it's exacerbated by the fact that many Americans lack a diverse media diet. In a <a href="https://www.journalism.org/2020/07/30/americans-who-mainly-get-their-news-on-social-media-are-less-engaged-less-knowledgeable/">Pew Research Center survey</a>, nearly one in five adults said that they get their political news primarily from social media. And even for U.S. adults who also check news sources or rely on television news, nearly half of them get <em>some</em> form of their political news from social media.</p>
+<div class="viz3">
+  <h2>Almost half of Americans surveyed get some of their political news from social media.</h2>
+  <div id="gotnews"></div>
+  <p style="text-align: right;"><small>Source: <a href="https://www.journalism.org/2020/07/30/americans-who-mainly-get-their-news-on-social-media-are-less-engaged-less-knowledgeable/">Pew Research Center</a>, July 2020</small></p>
+</div>
+<p>In the end, the problem of disinformation stems from one huge structural issue: the lack of education around media literacy in the United States. In a different Pew Research Center survey, participants were asked to identify five fact-based news articles from five opinion-based news articles. Only one in three respondents correctly identified all ten of the articles.
+</p>
+<p>According to the nonpartisan nonprofit <a href="https://newslit.org/about/mission/">News Literacy Project</a>, programs focused on teaching both children and adults how to identify credible news sources have been successful in helping spot disinformation. <a href="https://www.rand.org/research/projects/truth-decay/fighting-disinformation.html">Other efforts</a> focused on encouraging people to pause before they share a social media article have proven helpful as well.</p>
+<div class="viz4">
+  <h2>Only one-third of U.S. adults surveyed could identify facts and opinion in the news.</h2>
+  <div class="pie-container">
+    <div class="pie-item" id="factID">
+    <div class="pie-item" id="opinionID"></div>
+  </div>
+  <p style="text-align: right;"><small>Source: <a href="https://www.journalism.org/2018/06/18/distinguishing-between-factual-and-opinion-statements-in-the-news/">Pew Research Center</a>, July 2020</small></p>
+</div>
+</div>
+<p>While there is <a href="https://slate.com/technology/2020/10/misinformation-social-media-election-research-fear.html">some debate</a> amongst experts as to whether disinformation impacts election outcomes, the fact remains that disinformation is a problem&#8212;
+  and it's getting worse. Extreme political polarization, social media sharing systems, and news illiteracy will have to be addressed on a systemic level, as soon as possible. Otherwise, instead of just a year of disinformation, we will be facing a generation of it.</p>
+<script src="draw.js"></script>
+</body>
+</html>

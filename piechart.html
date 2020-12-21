@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+  <title>Arc generator (centroid)</title>
+</head>
+
+<style>
+text {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  fill: white;
+  text-anchor: middle;
+}
+.pie-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+</style>
+
+<body>
+  <div class="pie-container">
+    <div class="pie-item" id="factID"></div>
+    <div class="pie-item" id="opinionID"></div>
+  </div>
+
+  <script src="https://d3js.org/d3.v6.js"></script>
+  <script>
+
+var factData = [
+  {name: 'Did', quantity: 26},
+  {name: 'Did not', quantity: 74},
+];
+
+
+var opinionData = [
+  {name: 'Did', quantity: 35},
+  {name: 'Did not', quantity: 65},
+];
+
+function drawPieChart(data, container) {
+  var pieGenerator = d3.pie()
+    .value(function(d) {return d.quantity;})
+    .sort(function(a, b) {
+  return a.name.localeCompare(b.name);
+  });
+  
+  // Create an arc generator with configuration
+  var arcGenerator = d3.arc()
+    .innerRadius(20)
+    .outerRadius(100);
+
+  var arcData = pieGenerator(data);
+
+  const margin = {top: 30, right: 30, bottom: 30, left: 30};
+    width = 200 - margin.left - margin.right;
+    height = 200 - margin.top - margin.bottom;
+
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom);
+
+  const chart = svg.append('g')
+    .attr('transform', `translate(100, 100)`);
+
+  // Create a path element and set its d attribute
+  d3.select('g')
+    .selectAll('path')
+    .data(arcData)
+    .enter()
+    .append('path')
+    .attr('d', arcGenerator)
+    .style("fill", "#571F4E")
+    .style("opacity", function(d){
+      if (d.data.quantity === 26 || d.data.quantity === 35)
+      return "0.8";
+    else
+      return "0.5";
+    })
+    .style("stroke", "white")
+    .on("mouseover", mouseover4)
+    .on("mouseout", mouseout4);
+
+  // Labels
+  d3.select('g')
+    .selectAll('text')
+    .data(arcData)
+    .enter()
+    .append('text')
+    .each(function(d) {
+      var centroid = arcGenerator.centroid(d);
+      d3.select(this)
+        .attr('x', centroid[0])
+        .attr('y', centroid[1])
+        .attr('dy', '0.33em')
+        .text(d.data.name)
+        .attr("fill", "white")
+        .attr("text-anchor", "middle");
+    });
+
+    //START FOURTH TOOLTIP
+const tooltip4 = d3.select('#factID')
+  .append("div")
+  .attr("class", "tooltip4")
+  .style("opacity", 0);
+
+function mouseover4(event, factData) {
+  tooltip4.style('left', `${event.clientX + 15}px`)
+  .style('top', `${event.clientY}px`)
+  .transition()
+  .style('opacity', 0.98);
+  
+  tooltip4.join('p')
+  .html(`<strong>${factData.quantity}</strong> said this`);
+}
+
+function mousemove4(event) {
+  tooltip4.style('left', `${event.clientX}px`)
+  .style('top', `${event.clientY}px`)
+  .transition()
+  .style('opacity', 0.98);
+}
+
+function mouseout4(event) {
+  tooltip4.transition()
+    .duration(300) // ms
+    .style("opacity", 0);
+}
+//END FOURTH TOOLTIP
+}
+
+
+
+function drawPieChart2(data, container) {
+  var pieGenerator = d3.pie()
+    .value(function(d) {return d.quantity;})
+    .sort(function(a, b) {
+  return a.name.localeCompare(b.name);
+  });
+  
+  // Create an arc generator with configuration
+  var arcGenerator = d3.arc()
+    .innerRadius(20)
+    .outerRadius(100);
+
+  var arcData = pieGenerator(data);
+
+  const margin = {top: 30, right: 30, bottom: 30, left: 30};
+    width = 200 - margin.left - margin.right;
+    height = 200 - margin.top - margin.bottom;
+
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom);
+
+  const chart = svg.append('g')
+    .attr('transform', `translate(100, 100)`);
+
+  // Create a path element and set its d attribute
+  d3.select('g')
+    .selectAll('path')
+    .data(arcData)
+    .enter()
+    .append('path')
+    .attr('d', arcGenerator)
+    .style("fill", "#571F4E")
+    .style("opacity", function(d){
+      if (d.data.quantity === 26 || d.data.quantity === 35)
+      return "0.8";
+    else
+      return "0.5";
+    })
+    .style("stroke", "white")
+    .on("mouseover", mouseover5)
+    .on("mouseout", mouseout5);
+
+  // Labels
+  d3.select('g')
+    .selectAll('text')
+    .data(arcData)
+    .enter()
+    .append('text')
+    .each(function(d) {
+      var centroid = arcGenerator.centroid(d);
+      d3.select(this)
+        .attr('x', centroid[0])
+        .attr('y', centroid[1])
+        .attr('dy', '0.33em')
+        .text(d.data.name)
+        .attr("fill", "white")
+        .attr("text-anchor", "middle");
+    });
+    const tooltip5 = d3.select('#opinionID')
+  .append("div")
+  .attr("class", "tooltip5")
+  .style("opacity", 0);
+
+function mouseover5(event, opinionData) {
+  tooltip5.style('left', `${event.clientX + 15}px`)
+  .style('top', `${event.clientY}px`)
+  .transition()
+  .style('opacity', 0.98);
+  
+  tooltip5.join('p')
+  .html(`<strong>${opinionData.quantity}</strong> said this`);
+}
+
+function mousemove5(event) {
+  tooltip5.style('left', `${event.clientX}px`)
+  .style('top', `${event.clientY}px`)
+  .transition()
+  .style('opacity', 0.98);
+}
+
+function mouseout5(event) {
+  tooltip5.transition()
+    .duration(300) // ms
+    .style("opacity", 0);
+}
+//END FOURTH TOOLTIP
+
+}
+drawPieChart(factData, '#factID');
+drawPieChart2(opinionData, '#opinionID');
+
+  </script>
+</body>
+</html>
